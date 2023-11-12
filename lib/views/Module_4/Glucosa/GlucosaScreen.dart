@@ -51,6 +51,7 @@ class _GlucosaScreenState extends State<GlucosaScreen> {
         setState(() {
           readings = jsonData;
         });
+        print('Número de lecturas: ${readings.length}');
       } else {
         // Manejar errores si la solicitud no fue exitosa
         print('Error al obtener alimentos: ${response.statusCode}');
