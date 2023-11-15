@@ -9,6 +9,8 @@ import 'package:glucontrol_app/views/Module_1/info_screen.dart';
 import 'package:http/http.dart' as http;
 import '../../configBackend.dart';
 import '../Module_5/Estadisticas.dart';
+import '../Module_5/bar.dart';
+import '../Module_5/pie.dart';
 
 void main() => runApp(MyApp());
 

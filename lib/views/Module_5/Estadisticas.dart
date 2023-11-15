@@ -4,11 +4,12 @@ import 'dart:math';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-
+import 'package:charts_flutter/flutter.dart' as charts;
 import '../../configBackend.dart';
 import '../Module_3/home.dart';
 import '../Module_4/Glucosa/RegistroGlucosa.dart';
 import '../Module_4/Glucosa/modifyGlucose.dart';
+import 'bar.dart';
 
 void main() {
   runApp(MyApp());
@@ -42,10 +43,18 @@ class _GlucoseChartScreenLineState extends State<GlucoseChartScreenLine> {
 
   String selectedFID = '';
 
+  List<OrdinalSales> activities = [];
+  String selectedActivity = '';
+  int selectedActivityCount = 0;
+
+  List<dynamic> foods = [];
+
   @override
   void initState() {
     super.initState();
     getReadings();
+    getActivities();
+    getFoods();
   }
 
   Future<void> getReadings() async {
@@ -58,6 +67,51 @@ class _GlucoseChartScreenLineState extends State<GlucoseChartScreenLine> {
           readings = jsonData;
         });
         print('Número de lecturas: ${readings.length}');
+      } else {
+        // Manejar errores si la solicitud no fue exitosa
+        print('Error al obtener alimentos: ${response.statusCode}');
+      }
+    } catch (error) {
+      // Manejar errores en la solicitud
+      print('Error en la solicitud: $error');
+    }
+  }
+
+  Future<void> getActivities() async {
+    try {
+      final response = await http.get(Uri.parse(
+          ApiConfig.backendUrl + '/api/Module4/GetMostRegisteredAID'));
+      if (response.statusCode == 200) {
+        final jsonData = json.decode(response.body);
+        List<OrdinalSales> newActivities = [];
+        for (var item in jsonData) {
+          newActivities.add(
+              OrdinalSales(item['AID'], int.parse(item['Numero_Registros'])));
+        }
+        setState(() {
+          activities = newActivities;
+        });
+        print('Número de lecturas: ${activities.length}');
+      } else {
+        // Manejar errores si la solicitud no fue exitosa
+        print('Error al obtener actividades: ${response.statusCode}');
+      }
+    } catch (error) {
+      // Manejar errores en la solicitud
+      print('Error en la solicitud: $error');
+    }
+  }
+
+  Future<void> getFoods() async {
+    try {
+      final response = await http.get(Uri.parse(
+          ApiConfig.backendUrl + '/api/Module4/GetMostRegisteredFID'));
+      if (response.statusCode == 200) {
+        final jsonData = json.decode(response.body);
+        setState(() {
+          foods = jsonData;
+        });
+        print('Número de lecturas: ${foods.length}');
       } else {
         // Manejar errores si la solicitud no fue exitosa
         print('Error al obtener alimentos: ${response.statusCode}');
@@ -111,7 +165,7 @@ class _GlucoseChartScreenLineState extends State<GlucoseChartScreenLine> {
             child: PageView.builder(
               itemCount: sectionTexts.length,
               itemBuilder: (context, index) {
-                //////////////////////////////////////////////////////line
+                //////////////////////////////////////////////////////line grafica
                 if (index == 0) {
                   // Contenido para la primera sección
                   return Scaffold(
@@ -152,16 +206,80 @@ class _GlucoseChartScreenLineState extends State<GlucoseChartScreenLine> {
                               barWidth: 4, // Ajusta el tamaño de la línea
                             ),
                           ],
+                          lineTouchData: LineTouchData(
+                            touchTooltipData: LineTouchTooltipData(
+                              tooltipBgColor: Colors.blueAccent,
+                              getTooltipItems:
+                                  (List<LineBarSpot> touchedSpots) {
+                                return touchedSpots
+                                    .map((LineBarSpot touchedSpot) {
+                                  final int index =
+                                      touchedSpot.barIndex.toInt();
+                                  final FlSpot dataPoint =
+                                      generateData()[index];
+
+                                  return LineTooltipItem(
+                                    'Glucosa: ${readings[index]['Glucose_level']} \nAlimento: ${readings[index]['FID']}  ${readings[index]['Cantidad']}grs. \nActividad: ${readings[index]['AID']} ${readings[index]['Duration']}min.',
+                                    TextStyle(color: Colors.white),
+                                  );
+                                }).toList();
+                              },
+                            ),
+                          ),
                         ),
                       ),
                     ),
                   );
                 }
 
-                //////////////////////////////////////////////////////pie grafica
+                //////////////////////////////////////////////////////bar grafica
                 if (index == 1) {
-                
-                
+                  return Scaffold(
+                    body: Center(
+                      child: activities.isEmpty
+                          ? CircularProgressIndicator()
+                          : Column(
+                              children: [
+                                Expanded(
+                                  child: charts.BarChart(
+                                    _createSampleData(),
+                                    animate: true,
+                                    behaviors: [
+                                      charts.SelectNearest(
+                                          eventTrigger:
+                                              charts.SelectionTrigger.tap),
+                                      charts.DomainHighlighter(),
+                                    ],
+                                    selectionModels: [
+                                      charts.SelectionModelConfig(
+                                        type: charts.SelectionModelType.info,
+                                        changedListener: _onSelectionChanged,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                if (selectedActivity.isNotEmpty)
+                                  Padding(
+                                    padding: const EdgeInsets.all(25.0),
+                                    child: Text(
+                                        'Actividad: $selectedActivity\nRegistros: $selectedActivityCount'),
+                                  ),
+                              ],
+                            ),
+                    ),
+                  );
+                }
+                //////////////////////////////////////////////////////pie grafica
+                if (index == 2) {
+return Center(
+  child: PieChart(
+    PieChartData(
+      centerSpaceRadius: 100, // Ajusta este valor según tus necesidades
+      sections: buildPieChartSections(),
+    ),
+  ),
+);
+
                 } 
                 else {
                   // Contenido para las otras secciones
@@ -222,7 +340,14 @@ class _GlucoseChartScreenLineState extends State<GlucoseChartScreenLine> {
     );
   }
 
+  /// config line
   List<FlSpot> generateData() {
+    readings.sort((a, b) {
+      DateTime timeA = DateTime.parse(a['Registration_date']);
+      DateTime timeB = DateTime.parse(b['Registration_date']);
+      return timeA.compareTo(timeB);
+    });
+
     final List<FlSpot> data = readings.asMap().entries.map((entry) {
       final index = entry.key;
       final reading = entry.value;
@@ -235,6 +360,68 @@ class _GlucoseChartScreenLineState extends State<GlucoseChartScreenLine> {
 
     return data;
   }
+
+//pie chart
+  List<PieChartSectionData> buildPieChartSections() {
+    List<PieChartSectionData> sections = [];
+    for (var food in foods) {
+      sections.add(
+        PieChartSectionData(
+          color: getRandomColor(),
+          value: double.parse(food['Numero_Registros'].toString()),
+          title: food['FID'].toString(),
+          radius: 50,
+          titleStyle: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      );
+    }
+    return sections;
+  }
+
+  Color getRandomColor() {
+    List<Color> colors = [const Color.fromARGB(255, 71, 149, 212), Color.fromARGB(255, 245, 76, 76), const Color.fromARGB(255, 231, 167, 70), Color.fromARGB(255, 48, 48, 48)];
+    return colors[Random().nextInt(colors.length)];
+  }
+
+
+//bar config
+
+  List<charts.Series<OrdinalSales, String>> _createSampleData() {
+    return [
+      charts.Series<OrdinalSales, String>(
+        id: 'Sales',
+        colorFn: (_, __) => charts.ColorUtil.fromDartColor(
+            Color.fromARGB(255, 233, 60, 60)), // Cambia el color aquí
+        domainFn: (OrdinalSales sales, _) => sales.nombre,
+        measureFn: (OrdinalSales sales, _) => sales.cantidad,
+        data: activities,
+      )
+    ];
+  }
+
+  void _onSelectionChanged(charts.SelectionModel model) {
+    final selectedDatum = model.selectedDatum;
+
+    if (selectedDatum.isNotEmpty) {
+      setState(() {
+        selectedActivity = selectedDatum.first.datum.nombre;
+        selectedActivityCount = selectedDatum.first.datum.cantidad;
+      });
+    }
+  }
 }
+
+class OrdinalSales {
+  final String nombre;
+  final int cantidad;
+
+  OrdinalSales(this.nombre, this.cantidad);
+}
+
+
 ////////////////// graficas
 ///
