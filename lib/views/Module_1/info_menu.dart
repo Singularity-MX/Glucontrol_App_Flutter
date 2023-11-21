@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:glucontrol_app/views/Module_1/registro_screen_name.dart';
-import 'package:glucontrol_app/views/Module_2/login.dart';
+import 'package:Glucontrol/views/Module_1/registro_screen_name.dart';
+import 'package:Glucontrol/views/Module_2/login.dart';
 
 class InfoMenu extends StatelessWidget {
   @override
@@ -114,7 +114,6 @@ class InfoMenu extends StatelessWidget {
                         ),
                       ),
                     ),
-                    
                   ],
                 )),
           ),

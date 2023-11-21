@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart'; // Importa la librería intl para dar formato a la fecha
-import 'package:glucontrol_app/models/Module1/RegistroModel.dart';
-import 'package:glucontrol_app/views/Module_1/registro_screen_IMC.dart';
+import 'package:Glucontrol/models/Module1/RegistroModel.dart';
+import 'package:Glucontrol/views/Module_1/registro_screen_IMC.dart';
 
 void main() {
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive, overlays: []);
@@ -10,7 +10,8 @@ void main() {
   RegistroModel registro = RegistroModel();
 
   runApp(MaterialApp(
-    home: RegistroScreenBirthday(registro: registro), // Pasa registro como argumento
+    home: RegistroScreenBirthday(
+        registro: registro), // Pasa registro como argumento
   ));
 }
 
@@ -180,7 +181,8 @@ class _RegistroScreenBirthdayState extends State<RegistroScreenBirthday> {
               child: TextFormField(
                 readOnly: true,
                 onTap: () async {
-                  await _selectDate(context); // Espera a que se seleccione la fecha
+                  await _selectDate(
+                      context); // Espera a que se seleccione la fecha
                   if (selectedDate != null) {
                     // Actualiza el campo de texto con la fecha seleccionada
                     final formattedDate =
@@ -225,42 +227,42 @@ class _RegistroScreenBirthdayState extends State<RegistroScreenBirthday> {
             Container(
               width: MediaQuery.of(context).size.width * 0.8,
               child: ElevatedButton(
-  onPressed: () {
-    // Validar que la fecha de nacimiento no esté vacía
-    if (selectedDate == null) {
-      // Muestra un diálogo de error si la fecha de nacimiento está vacía
- // Muestra un mensaje de error si uno de los campos está vacío
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Por favor, completa todos los campos.'),
-        ),
-      );
-    } else {
-      // Si la fecha de nacimiento no está vacía, asigna el valor y navega a la siguiente pantalla
-      widget.registro.fechaNacimiento =
-          DateFormat('yyyy-MM-dd').format(selectedDate!);
+                onPressed: () {
+                  // Validar que la fecha de nacimiento no esté vacía
+                  if (selectedDate == null) {
+                    // Muestra un diálogo de error si la fecha de nacimiento está vacía
+                    // Muestra un mensaje de error si uno de los campos está vacío
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Por favor, completa todos los campos.'),
+                      ),
+                    );
+                  } else {
+                    // Si la fecha de nacimiento no está vacía, asigna el valor y navega a la siguiente pantalla
+                    widget.registro.fechaNacimiento =
+                        DateFormat('yyyy-MM-dd').format(selectedDate!);
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => RegistrosScreenIMC(registro: widget.registro),
-        ),
-      );
-    }
-  },
-  style: ElevatedButton.styleFrom(
-    primary: Color(0xFFFF3C3C),
-    padding: EdgeInsets.all(16.0),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15.0),
-    ),
-  ),
-  child: Text(
-    'Siguiente',
-    style: TextStyle(fontSize: 18, color: Colors.white),
-  ),
-),
-
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            RegistrosScreenIMC(registro: widget.registro),
+                      ),
+                    );
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xFFFF3C3C),
+                  padding: EdgeInsets.all(16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                ),
+                child: Text(
+                  'Siguiente',
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+              ),
             ),
           ],
         ),

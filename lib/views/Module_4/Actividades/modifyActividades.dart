@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../../configBackend.dart';
-import 'package:glucontrol_app/views/Module_4/Actividades/ActivitiesScreen.dart';
-import 'package:glucontrol_app/controllers/Module4/ActivitiesController.dart';
+import 'package:Glucontrol/views/Module_4/Actividades/ActivitiesScreen.dart';
+import 'package:Glucontrol/controllers/Module4/ActivitiesController.dart';
 
 class ModificarActividadScreen extends StatefulWidget {
   final Map<String, dynamic> food; // Datos del alimento a editar
@@ -10,7 +10,8 @@ class ModificarActividadScreen extends StatefulWidget {
   ModificarActividadScreen({required this.food});
 
   @override
-  _ModificarActividadScreenState createState() => _ModificarActividadScreenState();
+  _ModificarActividadScreenState createState() =>
+      _ModificarActividadScreenState();
 }
 
 class _ModificarActividadScreenState extends State<ModificarActividadScreen> {
@@ -18,10 +19,20 @@ class _ModificarActividadScreenState extends State<ModificarActividadScreen> {
   TextEditingController foodNameController = TextEditingController();
   TextEditingController classificationController = TextEditingController();
   String? classification; // Cambiado a String?
-  List<String> clasificaciones = ["Trabajo", "Ejercicio", "Deporte", "Reposo", "Tareas del Hogar", "Conducción", "Estudio", "Actividades al Aire Libre", "Actividades Sociales"];
+  List<String> clasificaciones = [
+    "Trabajo",
+    "Ejercicio",
+    "Deporte",
+    "Reposo",
+    "Tareas del Hogar",
+    "Conducción",
+    "Estudio",
+    "Actividades al Aire Libre",
+    "Actividades Sociales"
+  ];
   String? selectedClasificacion = "Ejercicio";
   late ActivitiesController controlador;
-  String aid="";
+  String aid = "";
 
   @override
   void initState() {
@@ -30,14 +41,13 @@ class _ModificarActividadScreenState extends State<ModificarActividadScreen> {
     // Inicializa los controladores con los datos actuales del alimento
     foodNameController.text = widget.food['Activitie_name'];
     classificationController.text = widget.food['Classification'];
-    aid=widget.food['AID'];
+    aid = widget.food['AID'];
   }
 
   Future<void> ModifyActivitie(String formData) async {
     try {
       final response = await http.put(
-        Uri.parse(ApiConfig.backendUrl +
-            '/api/Module4/UpdateActivity/'+aid),
+        Uri.parse(ApiConfig.backendUrl + '/api/Module4/UpdateActivity/' + aid),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -72,7 +82,7 @@ class _ModificarActividadScreenState extends State<ModificarActividadScreen> {
 
   @override
   Widget build(BuildContext context) {
- return Scaffold(
+    return Scaffold(
       backgroundColor: Color(0xFFE1E1E1),
       body: Column(
         children: <Widget>[
@@ -194,8 +204,7 @@ class _ModificarActividadScreenState extends State<ModificarActividadScreen> {
                   Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: TextField(
-                      controller:
-                          foodNameController, // Asignar el controlador
+                      controller: foodNameController, // Asignar el controlador
                       style: TextStyle(
                         fontSize: 18,
                         color: Color(0xFF575757),
@@ -304,7 +313,9 @@ class _ModificarActividadScreenState extends State<ModificarActividadScreen> {
                       ),
                       Text(
                         ' Regresar',
-                        style: TextStyle(fontSize: 18, color: const Color.fromARGB(255, 27, 27, 27)),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: const Color.fromARGB(255, 27, 27, 27)),
                       ),
                     ],
                   ),
@@ -319,25 +330,25 @@ class _ModificarActividadScreenState extends State<ModificarActividadScreen> {
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                // Aquí debes enviar los datos actualizados al servidor
-                final updatedFoodData = {
-                  'Food_name': foodNameController.text,
-                  'Classification': selectedClasificacion,
-                };
-                // Llama a la función para enviar los datos actualizados al servidor
-                // Puedes usar http.put o http.post, dependiendo de tu API
-                // Asegúrate de manejar las respuestas y errores adecuadamente
+                    // Aquí debes enviar los datos actualizados al servidor
+                    final updatedFoodData = {
+                      'Food_name': foodNameController.text,
+                      'Classification': selectedClasificacion,
+                    };
+                    // Llama a la función para enviar los datos actualizados al servidor
+                    // Puedes usar http.put o http.post, dependiendo de tu API
+                    // Asegúrate de manejar las respuestas y errores adecuadamente
 
-                try {
-                  String formData = controlador.AddActJSON(
-                      foodNameController.text, selectedClasificacion);
+                    try {
+                      String formData = controlador.AddActJSON(
+                          foodNameController.text, selectedClasificacion);
 
-                  await ModifyActivitie(formData);
-                } catch (e, stackTrace) {
-                  print('Error en el botón: $e');
-                  print('Stack Trace: $stackTrace');
-                }
-              },
+                      await ModifyActivitie(formData);
+                    } catch (e, stackTrace) {
+                      print('Error en el botón: $e');
+                      print('Stack Trace: $stackTrace');
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Color.fromARGB(255, 48, 48, 48),
                     padding: EdgeInsets.all(16.0),

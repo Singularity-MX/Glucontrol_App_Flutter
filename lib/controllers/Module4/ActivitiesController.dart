@@ -1,5 +1,5 @@
-import 'package:glucontrol_app/models/Module1/RegistroModel.dart';
-import 'package:glucontrol_app/tools/password_hash.dart';
+import 'package:Glucontrol/models/Module1/RegistroModel.dart';
+import 'package:Glucontrol/tools/password_hash.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../configBackend.dart';
@@ -9,7 +9,6 @@ String backendUrl = ApiConfig.backendUrl;
 
 class ActivitiesController {
   // Constructor que recibe la instancia de RegistroModel
-
 
   //enviar al backend
   String AddActJSON(String nameAct, classification) {

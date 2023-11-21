@@ -1,6 +1,6 @@
 {
-    "name": "glucontrol_app",
-    "short_name": "glucontrol_app",
+    "name": "Glucontrol",
+    "short_name": "Glucontrol",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

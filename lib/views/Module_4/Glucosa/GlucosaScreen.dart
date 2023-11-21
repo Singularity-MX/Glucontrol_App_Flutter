@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../../../configBackend.dart';
 import 'package:flutter/material.dart';
-import 'package:glucontrol_app/views/Module_4/Glucosa/modifyGlucose.dart';
-import 'package:glucontrol_app/views/Module_3/home.dart';
+import 'package:Glucontrol/views/Module_4/Glucosa/modifyGlucose.dart';
+import 'package:Glucontrol/views/Module_3/home.dart';
 
 import 'RegistroGlucosa.dart';
 
@@ -37,10 +37,7 @@ class _GlucosaScreenState extends State<GlucosaScreen> {
     super.initState();
     // Llamar a la función para obtener alimentos cuando se carga la pantalla
     getReadings();
-  
   }
-
-
 
   Future<void> getReadings() async {
     try {

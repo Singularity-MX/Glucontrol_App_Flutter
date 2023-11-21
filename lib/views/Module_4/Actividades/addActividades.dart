@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart'; // Importa la librería intl para dar formato a la fecha
-import 'package:glucontrol_app/models/Module1/RegistroModel.dart';
-import 'package:glucontrol_app/controllers/Module4/ActivitiesController.dart';
-import 'package:glucontrol_app/views/Module_2/login.dart';
+import 'package:Glucontrol/models/Module1/RegistroModel.dart';
+import 'package:Glucontrol/controllers/Module4/ActivitiesController.dart';
+import 'package:Glucontrol/views/Module_2/login.dart';
 import 'package:http/http.dart' as http;
 import '../../../configBackend.dart';
-import 'package:glucontrol_app/views/Module_4/Actividades/ActivitiesScreen.dart';
+import 'package:Glucontrol/views/Module_4/Actividades/ActivitiesScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,7 +28,17 @@ class _AgregarActividadScreenState extends State<AgregarActividadScreen> {
   TextEditingController nombrePlatilloController = TextEditingController();
   String? classification; // Cambiado a String?
 
-  List<String> clasificaciones = ["Trabajo", "Ejercicio", "Deporte", "Reposo", "Tareas del Hogar", "Conducción", "Estudio", "Actividades al Aire Libre", "Actividades Sociales"];
+  List<String> clasificaciones = [
+    "Trabajo",
+    "Ejercicio",
+    "Deporte",
+    "Reposo",
+    "Tareas del Hogar",
+    "Conducción",
+    "Estudio",
+    "Actividades al Aire Libre",
+    "Actividades Sociales"
+  ];
   String? selectedClasificacion = "Ejercicio";
   String datos = "ad";
   late ActivitiesController controlador;
@@ -43,7 +53,7 @@ class _AgregarActividadScreenState extends State<AgregarActividadScreen> {
   Future<void> addActivitie(String formData) async {
     try {
       final response = await http.post(
-        Uri.parse(backendUrl+'/api/Module4/CreateActivity'),
+        Uri.parse(backendUrl + '/api/Module4/CreateActivity'),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -78,7 +88,7 @@ class _AgregarActividadScreenState extends State<AgregarActividadScreen> {
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
+    return Scaffold(
       backgroundColor: Color(0xFFE1E1E1),
       body: Column(
         children: <Widget>[
@@ -310,7 +320,9 @@ class _AgregarActividadScreenState extends State<AgregarActividadScreen> {
                       ),
                       Text(
                         ' Regresar',
-                        style: TextStyle(fontSize: 18, color: const Color.fromARGB(255, 27, 27, 27)),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: const Color.fromARGB(255, 27, 27, 27)),
                       ),
                     ],
                   ),

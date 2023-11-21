@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:glucontrol_app/configBackend.dart';
+import 'package:Glucontrol/configBackend.dart';
 import 'package:http/http.dart' as http;
-import 'package:glucontrol_app/controllers/Module4/GlucoseController.dart';
-import 'package:glucontrol_app/views/Module_3/home.dart';
+import 'package:Glucontrol/controllers/Module4/GlucoseController.dart';
+import 'package:Glucontrol/views/Module_3/home.dart';
 
 import 'GlucosaScreen.dart';
 
@@ -229,9 +229,6 @@ class _RegistroGlucosaScreenState extends State<RegistroGlucosaScreen> {
                       ),
                     ),
                   ),
-                  
-                  
-
 
                   ///////////////////////////////////alimento
                   SizedBox(height: 16.0),
@@ -269,23 +266,18 @@ class _RegistroGlucosaScreenState extends State<RegistroGlucosaScreen> {
                       }).toList(),
                       onChanged: (String? newValue) {
                         setState(() {
-                         selectedAlimento =
-                      newValue ?? '';
+                          selectedAlimento = newValue ?? '';
                         });
                       },
                       underline: Container(),
                     ),
                   ),
 
-
-
-
                   SizedBox(height: 20),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: TextField(
-                      controller:
-                          cantidadController, // Asignar el controlador
+                      controller: cantidadController, // Asignar el controlador
                       style: TextStyle(
                         fontSize: 18,
                         color: Color(0xFF575757),
@@ -315,13 +307,11 @@ class _RegistroGlucosaScreenState extends State<RegistroGlucosaScreen> {
                           color: Color(0xFF777777),
                         ),
                       ),
-                        keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.number,
                     ),
                   ),
 
-
-
-                    ///////////////////////////////////actividad
+                  ///////////////////////////////////actividad
                   SizedBox(height: 16.0),
                   // ... Otros widgets antes del formulario
                   Container(
@@ -349,31 +339,27 @@ class _RegistroGlucosaScreenState extends State<RegistroGlucosaScreen> {
                         Icons.arrow_drop_down,
                         color: Color(0xFF777777),
                       ),
-                     items: actividades.map((String actividad) {
-                       return DropdownMenuItem<String>(
-                  value: actividad,
-                  child: Text(actividad),
-                );
+                      items: actividades.map((String actividad) {
+                        return DropdownMenuItem<String>(
+                          value: actividad,
+                          child: Text(actividad),
+                        );
                       }).toList(),
                       onChanged: (String? newValue) {
-                      setState(() {
-                  selectedActividad =
-                      newValue ?? ''; // Usa el operador ?? para evitar nulos
-                });
+                        setState(() {
+                          selectedActividad = newValue ??
+                              ''; // Usa el operador ?? para evitar nulos
+                        });
                       },
                       underline: Container(),
                     ),
                   ),
 
-
-
-
                   SizedBox(height: 20),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: TextField(
-                      controller:
-                          duracionController, // Asignar el controlador
+                      controller: duracionController, // Asignar el controlador
                       style: TextStyle(
                         fontSize: 18,
                         color: Color(0xFF575757),
@@ -403,12 +389,9 @@ class _RegistroGlucosaScreenState extends State<RegistroGlucosaScreen> {
                           color: Color(0xFF777777),
                         ),
                       ),
-                        keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.number,
                     ),
                   ),
-
-
-
 
                   /////////////////////////////glucosa
                   SizedBox(height: 20),
@@ -417,8 +400,7 @@ class _RegistroGlucosaScreenState extends State<RegistroGlucosaScreen> {
                   Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: TextField(
-                      controller:
-                          glucosaController, // Asignar el controlador
+                      controller: glucosaController, // Asignar el controlador
                       style: TextStyle(
                         fontSize: 18,
                         color: Color(0xFF575757),
@@ -448,8 +430,7 @@ class _RegistroGlucosaScreenState extends State<RegistroGlucosaScreen> {
                           color: Color(0xFF777777),
                         ),
                       ),
-                       keyboardType: TextInputType.number,
-                        
+                      keyboardType: TextInputType.number,
                     ),
                   ),
                   // ... Otros widgets después del formulario
@@ -466,8 +447,7 @@ class _RegistroGlucosaScreenState extends State<RegistroGlucosaScreen> {
                   onPressed: () async {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => GlucosaScreen()),
+                      MaterialPageRoute(builder: (context) => GlucosaScreen()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -502,64 +482,67 @@ class _RegistroGlucosaScreenState extends State<RegistroGlucosaScreen> {
             child: Column(
               children: [
                 ElevatedButton(
-  onPressed: () async {
-    // Obtén los valores de los campos de texto
-    final alimento = selectedAlimento;
-    final actividad = selectedActividad;
-    final glucosa = glucosaController.text;
-    
-    // Valida que ninguno de los campos esté vacío
-    if (alimento == null || actividad == null || glucosa.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Por favor, completa todos los campos.'),
-        ),
-      );
-      return; // Sale de la función sin hacer nada si hay campos vacíos
-    }
+                  onPressed: () async {
+                    // Obtén los valores de los campos de texto
+                    final alimento = selectedAlimento;
+                    final actividad = selectedActividad;
+                    final glucosa = glucosaController.text;
 
-    // Ahora puedes continuar con el proceso de registro
-    try {
-      String formData = controlador.AddReadGlucoseJSON(
-        alimento,
-        cantidadController.text,
-        actividad,
-        duracionController.text,
-        glucosa,
-      );
-      await addReadingGlucose(formData);
-    } catch (e, stackTrace) {
-      print('Error en el botón: $e');
-      print('Stack Trace: $stackTrace');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error al registrar los datos. Por favor, inténtalo de nuevo.'),
-        ),
-      );
-    }
-  },
-  style: ElevatedButton.styleFrom(
-    primary: Color.fromARGB(255, 48, 48, 48),
-    padding: EdgeInsets.all(16.0),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15.0),
-    ),
-  ),
-  child: Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Icon(
-        Icons.check,
-        color: Colors.white,
-      ),
-      Text(
-        ' Aceptar',
-        style: TextStyle(fontSize: 18, color: Colors.white),
-      ),
-    ],
-  ),
-),
+                    // Valida que ninguno de los campos esté vacío
+                    if (alimento == null ||
+                        actividad == null ||
+                        glucosa.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content:
+                              Text('Por favor, completa todos los campos.'),
+                        ),
+                      );
+                      return; // Sale de la función sin hacer nada si hay campos vacíos
+                    }
 
+                    // Ahora puedes continuar con el proceso de registro
+                    try {
+                      String formData = controlador.AddReadGlucoseJSON(
+                        alimento,
+                        cantidadController.text,
+                        actividad,
+                        duracionController.text,
+                        glucosa,
+                      );
+                      await addReadingGlucose(formData);
+                    } catch (e, stackTrace) {
+                      print('Error en el botón: $e');
+                      print('Stack Trace: $stackTrace');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                              'Error al registrar los datos. Por favor, inténtalo de nuevo.'),
+                        ),
+                      );
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Color.fromARGB(255, 48, 48, 48),
+                    padding: EdgeInsets.all(16.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.check,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        ' Aceptar',
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

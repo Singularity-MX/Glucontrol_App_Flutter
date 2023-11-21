@@ -2,7 +2,7 @@
  <uses-permission android:name="android.permission.INTERNET" /> <!-- Agregado para el permiso de acceso a Internet -->
 
     <application
-        android:label="glucontrol_app"
+        android:label="Glucontrol"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

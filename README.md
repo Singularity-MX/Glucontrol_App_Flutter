@@ -1,4 +1,4 @@
-# glucontrol_app
+# Glucontrol
 
 A new Flutter project.
 

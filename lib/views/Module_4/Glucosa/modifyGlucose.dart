@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:glucontrol_app/configBackend.dart';
+import 'package:Glucontrol/configBackend.dart';
 import 'package:http/http.dart' as http;
-import 'package:glucontrol_app/controllers/Module4/GlucoseController.dart';
-import 'package:glucontrol_app/views/Module_3/home.dart';
+import 'package:Glucontrol/controllers/Module4/GlucoseController.dart';
+import 'package:Glucontrol/views/Module_3/home.dart';
 
 import 'GlucosaScreen.dart';
 
@@ -41,7 +41,6 @@ class _ModifyGlucoseState extends State<ModifyGlucose> {
     cantidadController.text = widget.food['Cantidad'];
     duracionController.text = widget.food['Duration'].toString();
     rid = widget.food['RID'];
-    
   }
 
   Future<void> fetchAlimentos() async {
@@ -89,7 +88,7 @@ class _ModifyGlucoseState extends State<ModifyGlucose> {
   Future<void> UpdateReadGlucose(String formData, String RID) async {
     try {
       final response = await http.put(
-        Uri.parse(backendUrl + '/api/Module4/UpdateGlucoseReading/'+RID),
+        Uri.parse(backendUrl + '/api/Module4/UpdateGlucoseReading/' + RID),
         headers: {
           'Content-Type': 'application/json',
         },

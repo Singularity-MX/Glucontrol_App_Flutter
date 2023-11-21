@@ -3,9 +3,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../../../configBackend.dart';
 import 'package:flutter/material.dart';
-import 'package:glucontrol_app/views/Module_4/Alimentos/modifyAlimentos.dart';
-import 'package:glucontrol_app/views/Module_4/Alimentos/addAlimentos.dart';
-import 'package:glucontrol_app/views/Module_3/home.dart';
+import 'package:Glucontrol/views/Module_4/Alimentos/modifyAlimentos.dart';
+import 'package:Glucontrol/views/Module_4/Alimentos/addAlimentos.dart';
+import 'package:Glucontrol/views/Module_3/home.dart';
 
 void main() => runApp(MyApp());
 
@@ -296,8 +296,6 @@ class _AlimentosScreenState extends State<AlimentosScreen> {
                                   ElevatedButton(
                                     child: Text('Cancelar'),
                                     onPressed: () {
-                                    
-
                                       Navigator.of(context)
                                           .pop(); // Cerrar el cuadro de diálogo
                                     },

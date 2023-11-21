@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart'; // Importa la librería intl para dar formato a la fecha
-import 'package:glucontrol_app/models/Module1/RegistroModel.dart';
-import 'package:glucontrol_app/controllers/Module4/FoodControllers.dart';
-import 'package:glucontrol_app/views/Module_2/login.dart';
+import 'package:Glucontrol/models/Module1/RegistroModel.dart';
+import 'package:Glucontrol/controllers/Module4/FoodControllers.dart';
+import 'package:Glucontrol/views/Module_2/login.dart';
 import 'package:http/http.dart' as http;
 import '../../../configBackend.dart';
-import 'package:glucontrol_app/views/Module_4/Alimentos/AlimentosScreen.dart';
+import 'package:Glucontrol/views/Module_4/Alimentos/AlimentosScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -316,7 +316,9 @@ class _AgregarAlimentoScreenState extends State<AgregarAlimentoScreen> {
                       ),
                       Text(
                         ' Regresar',
-                        style: TextStyle(fontSize: 18, color: const Color.fromARGB(255, 27, 27, 27)),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: const Color.fromARGB(255, 27, 27, 27)),
                       ),
                     ],
                   ),

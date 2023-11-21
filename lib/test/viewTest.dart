@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:glucontrol_app/configBackend.dart'; // Asegúrate de proporcionar la ruta correcta a api_config.dart
+import 'package:Glucontrol/configBackend.dart'; // Asegúrate de proporcionar la ruta correcta a api_config.dart
 
 void main() {
   runApp(MyApp());

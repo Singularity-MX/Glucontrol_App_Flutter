@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:glucontrol_app/views/Module_1/registro_screen_birthday.dart';
-import 'package:glucontrol_app/models/Module1/RegistroModel.dart';
+import 'package:Glucontrol/views/Module_1/registro_screen_birthday.dart';
+import 'package:Glucontrol/models/Module1/RegistroModel.dart';
 
 void main() {
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive, overlays: []);

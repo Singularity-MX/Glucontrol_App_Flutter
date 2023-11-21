@@ -1,4 +1,4 @@
-package com.example.glucontrol_app
+package com.example.Glucontrol
 
 import io.flutter.embedding.android.FlutterActivity
 

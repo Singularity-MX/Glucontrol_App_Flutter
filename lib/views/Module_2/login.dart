@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:glucontrol_app/views/Module_3/home.dart';
+import 'package:Glucontrol/views/Module_3/home.dart';
 import 'package:http/http.dart' as http;
-import 'package:glucontrol_app/configBackend.dart';
-import 'package:glucontrol_app/tools/password_hash.dart';
+import 'package:Glucontrol/configBackend.dart';
+import 'package:Glucontrol/tools/password_hash.dart';
 import 'dart:convert';
 
 void main() => runApp(LoginApp());
@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
         // Éxito: Navegar a la pantalla de inicio de sesión
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error del servidor: '+ backendUrl),
+            content: Text('Error del servidor: ' + backendUrl),
           ),
         );
       }
@@ -74,7 +74,10 @@ class _LoginPageState extends State<LoginPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-              'No se pudo conectar al backend. Verifica tu conexión de red o inténtalo más tarde. ' + backendUrl+'\n'+'$e'),
+              'No se pudo conectar al backend. Verifica tu conexión de red o inténtalo más tarde. ' +
+                  backendUrl +
+                  '\n' +
+                  '$e'),
         ),
       );
     }
@@ -107,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
           Image.asset(
             'lib/assets/fondoLog.png', // Ruta de la imagen de fondo
             fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width ,
+            width: MediaQuery.of(context).size.width,
           ),
 
           // Logo en el centro
@@ -115,10 +118,7 @@ class _LoginPageState extends State<LoginPage> {
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-               
-                
-              ],
+              children: <Widget>[],
             ),
           ),
           // Contenedor con bordes redondeados y sombreado
@@ -127,7 +127,8 @@ class _LoginPageState extends State<LoginPage> {
             right: 0,
             bottom: 0,
             child: Container(
-                height: MediaQuery.of(context).size.height * 0.55, // Altura del 30% de la pantalla
+                height: MediaQuery.of(context).size.height *
+                    0.55, // Altura del 30% de la pantalla
                 width: MediaQuery.of(context)
                     .size
                     .width, // Ancho del 100% de la pantalla
@@ -156,7 +157,8 @@ class _LoginPageState extends State<LoginPage> {
                       'Inicia Sesión',
                       style: TextStyle(
                         fontSize: 22,
-                        color: Color.fromARGB(255, 41, 41, 41),// Color de la línea
+                        color: Color.fromARGB(
+                            255, 41, 41, 41), // Color de la línea
                         fontWeight: FontWeight.w600, // Fuente Extra Light
                       ),
                       textAlign: TextAlign.justify, // Justificar el texto
@@ -165,14 +167,15 @@ class _LoginPageState extends State<LoginPage> {
                     Divider(
                       height: 1, // Altura de la línea
                       color:
-                          Color.fromARGB(255, 41, 41, 41),// Color de la línea
+                          Color.fromARGB(255, 41, 41, 41), // Color de la línea
                     ),
-                      SizedBox(height: 25),
+                    SizedBox(height: 25),
                     Text(
                       'Welcome to Glucontrol',
                       style: TextStyle(
                         fontSize: 20,
-                        color: Color.fromARGB(255, 41, 41, 41),// Color de la línea
+                        color: Color.fromARGB(
+                            255, 41, 41, 41), // Color de la línea
                         fontWeight: FontWeight.w300, // Fuente Extra Light
                       ),
                       textAlign: TextAlign.justify, // Justificar el texto
@@ -214,12 +217,12 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
 
-
                     SizedBox(height: 20),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.8,
                       child: TextField(
-                        controller: _passwordController, // Asignar el controlador
+                        controller:
+                            _passwordController, // Asignar el controlador
                         obscureText: true,
                         style: TextStyle(
                           fontSize: 18,
@@ -253,7 +256,6 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
 
-      
                     SizedBox(height: 30), // Espacio entre el texto y la línea
                     Divider(
                       height: 1, // Altura de la línea
@@ -271,7 +273,8 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       child: Text('Iniciar sesión'),
                       style: ElevatedButton.styleFrom(
-                        primary: Color.fromRGBO(255, 52, 52, 1), // Color de fondo del botón
+                        primary: Color.fromRGBO(
+                            255, 52, 52, 1), // Color de fondo del botón
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
                               10.0), // Radio de esquinas de 15
@@ -294,7 +297,8 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       child: Text('Regresar'),
                       style: ElevatedButton.styleFrom(
-                        primary: Color.fromRGBO(43, 43, 43, 1), // Color de fondo del botón
+                        primary: Color.fromRGBO(
+                            43, 43, 43, 1), // Color de fondo del botón
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
                               10.0), // Radio de esquinas de 15

@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:glucontrol_app/views/Module_4/Alimentos/AlimentosScreen.dart';
-import 'package:glucontrol_app/views/Module_4/Actividades/ActivitiesScreen.dart';
-import 'package:glucontrol_app/views/Module_4/Glucosa/GlucosaScreen.dart';
-import 'package:glucontrol_app/views/Module_1/info_screen.dart';
+import 'package:Glucontrol/views/Module_4/Alimentos/AlimentosScreen.dart';
+import 'package:Glucontrol/views/Module_4/Actividades/ActivitiesScreen.dart';
+import 'package:Glucontrol/views/Module_4/Glucosa/GlucosaScreen.dart';
+import 'package:Glucontrol/views/Module_1/info_screen.dart';
 import 'package:http/http.dart' as http;
 import '../../configBackend.dart';
 import '../Module_5/Estadisticas.dart';

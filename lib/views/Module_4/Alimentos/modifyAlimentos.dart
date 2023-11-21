@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../../configBackend.dart';
-import 'package:glucontrol_app/views/Module_4/Alimentos/AlimentosScreen.dart';
-import 'package:glucontrol_app/controllers/Module4/FoodControllers.dart';
+import 'package:Glucontrol/views/Module_4/Alimentos/AlimentosScreen.dart';
+import 'package:Glucontrol/controllers/Module4/FoodControllers.dart';
 
 class EditarAlimentoScreen extends StatefulWidget {
   final Map<String, dynamic> food; // Datos del alimento a editar
@@ -18,10 +18,16 @@ class _EditarAlimentoScreenState extends State<EditarAlimentoScreen> {
   TextEditingController foodNameController = TextEditingController();
   TextEditingController classificationController = TextEditingController();
   String? classification; // Cambiado a String?
-  List<String> clasificaciones = ["Carbohidratos", "Proteínas", "Grasas", "Frutas", "Verduras"];
+  List<String> clasificaciones = [
+    "Carbohidratos",
+    "Proteínas",
+    "Grasas",
+    "Frutas",
+    "Verduras"
+  ];
   String? selectedClasificacion = "Verduras";
   late FoodController controlador;
-  String fid="";
+  String fid = "";
 
   @override
   void initState() {
@@ -30,14 +36,13 @@ class _EditarAlimentoScreenState extends State<EditarAlimentoScreen> {
     // Inicializa los controladores con los datos actuales del alimento
     foodNameController.text = widget.food['Food_name'];
     classificationController.text = widget.food['Classification'];
-    fid=widget.food['FID'];
+    fid = widget.food['FID'];
   }
 
   Future<void> ModifyFood(String formData) async {
     try {
       final response = await http.put(
-        Uri.parse(ApiConfig.backendUrl +
-            '/api/Module4/UpdateFood/'+fid),
+        Uri.parse(ApiConfig.backendUrl + '/api/Module4/UpdateFood/' + fid),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -194,8 +199,7 @@ class _EditarAlimentoScreenState extends State<EditarAlimentoScreen> {
                   Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: TextField(
-                      controller:
-                          foodNameController, // Asignar el controlador
+                      controller: foodNameController, // Asignar el controlador
                       style: TextStyle(
                         fontSize: 18,
                         color: Color(0xFF575757),
@@ -304,7 +308,9 @@ class _EditarAlimentoScreenState extends State<EditarAlimentoScreen> {
                       ),
                       Text(
                         ' Regresar',
-                        style: TextStyle(fontSize: 18, color: const Color.fromARGB(255, 27, 27, 27)),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: const Color.fromARGB(255, 27, 27, 27)),
                       ),
                     ],
                   ),
@@ -319,25 +325,25 @@ class _EditarAlimentoScreenState extends State<EditarAlimentoScreen> {
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                // Aquí debes enviar los datos actualizados al servidor
-                final updatedFoodData = {
-                  'Food_name': foodNameController.text,
-                  'Classification': selectedClasificacion,
-                };
-                // Llama a la función para enviar los datos actualizados al servidor
-                // Puedes usar http.put o http.post, dependiendo de tu API
-                // Asegúrate de manejar las respuestas y errores adecuadamente
+                    // Aquí debes enviar los datos actualizados al servidor
+                    final updatedFoodData = {
+                      'Food_name': foodNameController.text,
+                      'Classification': selectedClasificacion,
+                    };
+                    // Llama a la función para enviar los datos actualizados al servidor
+                    // Puedes usar http.put o http.post, dependiendo de tu API
+                    // Asegúrate de manejar las respuestas y errores adecuadamente
 
-                try {
-                  String formData = controlador.AddFoodJSON(
-                      foodNameController.text, selectedClasificacion);
+                    try {
+                      String formData = controlador.AddFoodJSON(
+                          foodNameController.text, selectedClasificacion);
 
-                  await ModifyFood(formData);
-                } catch (e, stackTrace) {
-                  print('Error en el botón: $e');
-                  print('Stack Trace: $stackTrace');
-                }
-              },
+                      await ModifyFood(formData);
+                    } catch (e, stackTrace) {
+                      print('Error en el botón: $e');
+                      print('Stack Trace: $stackTrace');
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Color.fromARGB(255, 48, 48, 48),
                     padding: EdgeInsets.all(16.0),

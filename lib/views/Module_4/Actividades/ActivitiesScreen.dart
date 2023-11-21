@@ -3,9 +3,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../../../configBackend.dart';
 import 'package:flutter/material.dart';
-import 'package:glucontrol_app/views/Module_4/Alimentos/modifyAlimentos.dart';
-import 'package:glucontrol_app/views/Module_4/Actividades/addActividades.dart';
-import 'package:glucontrol_app/views/Module_3/home.dart';
+import 'package:Glucontrol/views/Module_4/Alimentos/modifyAlimentos.dart';
+import 'package:Glucontrol/views/Module_4/Actividades/addActividades.dart';
+import 'package:Glucontrol/views/Module_3/home.dart';
 
 import 'modifyActividades.dart';
 
@@ -27,9 +27,8 @@ class ActividadesScreen extends StatefulWidget {
 
 class _ActividadesScreenState extends State<ActividadesScreen> {
   List<dynamic> actividades = []; // Lista para almacenar los alimentos
-TextEditingController _searchController = TextEditingController();
+  TextEditingController _searchController = TextEditingController();
   String _searchText = "";
-
 
   @override
   void initState() {
@@ -229,7 +228,8 @@ TextEditingController _searchController = TextEditingController();
 
                 return ListTile(
                   title: Text(activities['Activitie_name'] ?? 'Sin nombre'),
-                  subtitle: Text(activities['Classification'] ?? 'Sin clasificación'),
+                  subtitle:
+                      Text(activities['Classification'] ?? 'Sin clasificación'),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -274,7 +274,8 @@ TextEditingController _searchController = TextEditingController();
                           // Acción para editar el alimento
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                               builder: (context) => ModificarActividadScreen(food: activities),
+                              builder: (context) =>
+                                  ModificarActividadScreen(food: activities),
                             ),
                           );
                         },
@@ -297,8 +298,6 @@ TextEditingController _searchController = TextEditingController();
                                   ElevatedButton(
                                     child: Text('Cancelar'),
                                     onPressed: () {
-                                    
-
                                       Navigator.of(context)
                                           .pop(); // Cerrar el cuadro de diálogo
                                     },
@@ -399,6 +398,5 @@ TextEditingController _searchController = TextEditingController();
         ],
       ),
     );
-    }
-
+  }
 }
