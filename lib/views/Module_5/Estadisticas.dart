@@ -214,7 +214,7 @@ class _GlucoseChartScreenLineState extends State<GlucoseChartScreenLine> {
                                 return touchedSpots
                                     .map((LineBarSpot touchedSpot) {
                                   final int index =
-                                      touchedSpot.barIndex.toInt();
+                                      touchedSpot.spotIndex.toInt();
                                   final FlSpot dataPoint =
                                       generateData()[index];
 
@@ -241,21 +241,25 @@ class _GlucoseChartScreenLineState extends State<GlucoseChartScreenLine> {
                           : Column(
                               children: [
                                 Expanded(
-                                  child: charts.BarChart(
-                                    _createSampleData(),
-                                    animate: true,
-                                    behaviors: [
-                                      charts.SelectNearest(
-                                          eventTrigger:
-                                              charts.SelectionTrigger.tap),
-                                      charts.DomainHighlighter(),
-                                    ],
-                                    selectionModels: [
-                                      charts.SelectionModelConfig(
-                                        type: charts.SelectionModelType.info,
-                                        changedListener: _onSelectionChanged,
-                                      ),
-                                    ],
+                                  child: Container(
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    child: charts.BarChart(
+                                      _createSampleData(),
+                                      animate: true,
+                                      behaviors: [
+                                        charts.SelectNearest(
+                                            eventTrigger:
+                                                charts.SelectionTrigger.tap),
+                                        charts.DomainHighlighter(),
+                                      ],
+                                      selectionModels: [
+                                        charts.SelectionModelConfig(
+                                          type: charts.SelectionModelType.info,
+                                          changedListener: _onSelectionChanged,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 if (selectedActivity.isNotEmpty)
@@ -274,14 +278,29 @@ class _GlucoseChartScreenLineState extends State<GlucoseChartScreenLine> {
 return Center(
   child: PieChart(
     PieChartData(
-      centerSpaceRadius: 100, // Ajusta este valor según tus necesidades
+      centerSpaceRadius: 0,
       sections: buildPieChartSections(),
+      pieTouchData: PieTouchData(
+        touchCallback: (FlTouchEvent event, PieTouchResponse? pieTouchResponse) {
+          if (pieTouchResponse != null &&
+              pieTouchResponse.touchedSection != null) {
+            final touchedSection = pieTouchResponse.touchedSection!;
+            final registros = touchedSection.touchedSection?.value.toInt(); // Cantidad de registros
+            // Puedes mostrar la cantidad de registros como desees
+            print('Registros: $registros');
+          }
+        },
+      ),
     ),
   ),
 );
 
-                } 
-                else {
+
+
+
+
+
+                } else {
                   // Contenido para las otras secciones
                   return Center(
                     child: Text(
@@ -369,10 +388,10 @@ return Center(
         PieChartSectionData(
           color: getRandomColor(),
           value: double.parse(food['Numero_Registros'].toString()),
-          title: food['FID'].toString(),
-          radius: 50,
+          title: food['FID'].toString()+'\n'+food['Numero_Registros'].toString()+' registros',
+          radius: 170,
           titleStyle: TextStyle(
-            fontSize: 16,
+            fontSize: 14,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -383,10 +402,9 @@ return Center(
   }
 
   Color getRandomColor() {
-    List<Color> colors = [const Color.fromARGB(255, 71, 149, 212), Color.fromARGB(255, 245, 76, 76), const Color.fromARGB(255, 231, 167, 70), Color.fromARGB(255, 48, 48, 48)];
+    List<Color> colors = [Color.fromARGB(255, 228, 69, 69)];
     return colors[Random().nextInt(colors.length)];
   }
-
 
 //bar config
 
