@@ -406,7 +406,7 @@ class _RegistrosScreenClavesState extends State<RegistrosScreenClaves> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFFFF3C3C),
+                  backgroundColor: Color(0xFFFF3C3C),
                   padding: EdgeInsets.all(16.0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),

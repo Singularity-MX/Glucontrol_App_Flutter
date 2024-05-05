@@ -275,31 +275,29 @@ class _GlucoseChartScreenLineState extends State<GlucoseChartScreenLine> {
                 }
                 //////////////////////////////////////////////////////pie grafica
                 if (index == 2) {
-return Center(
-  child: PieChart(
-    PieChartData(
-      centerSpaceRadius: 0,
-      sections: buildPieChartSections(),
-      pieTouchData: PieTouchData(
-        touchCallback: (FlTouchEvent event, PieTouchResponse? pieTouchResponse) {
-          if (pieTouchResponse != null &&
-              pieTouchResponse.touchedSection != null) {
-            final touchedSection = pieTouchResponse.touchedSection!;
-            final registros = touchedSection.touchedSection?.value.toInt(); // Cantidad de registros
-            // Puedes mostrar la cantidad de registros como desees
-            print('Registros: $registros');
-          }
-        },
-      ),
-    ),
-  ),
-);
-
-
-
-
-
-
+                  return Center(
+                    child: PieChart(
+                      PieChartData(
+                        centerSpaceRadius: 0,
+                        sections: buildPieChartSections(),
+                        pieTouchData: PieTouchData(
+                          touchCallback: (FlTouchEvent event,
+                              PieTouchResponse? pieTouchResponse) {
+                            if (pieTouchResponse != null &&
+                                pieTouchResponse.touchedSection != null) {
+                              final touchedSection =
+                                  pieTouchResponse.touchedSection!;
+                              final registros = touchedSection
+                                  .touchedSection?.value
+                                  .toInt(); // Cantidad de registros
+                              // Puedes mostrar la cantidad de registros como desees
+                              print('Registros: $registros');
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                  );
                 } else {
                   // Contenido para las otras secciones
                   return Center(
@@ -333,7 +331,7 @@ return Center(
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Color.fromARGB(255, 48, 48, 48),
+                        backgroundColor: Color.fromARGB(255, 48, 48, 48),
                         padding: EdgeInsets.all(13.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -388,7 +386,10 @@ return Center(
         PieChartSectionData(
           color: getRandomColor(),
           value: double.parse(food['Numero_Registros'].toString()),
-          title: food['FID'].toString()+'\n'+food['Numero_Registros'].toString()+' registros',
+          title: food['FID'].toString() +
+              '\n' +
+              food['Numero_Registros'].toString() +
+              ' registros',
           radius: 170,
           titleStyle: TextStyle(
             fontSize: 14,

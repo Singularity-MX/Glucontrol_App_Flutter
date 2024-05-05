@@ -1,5 +1,5 @@
 class ApiConfig {
-  static String _backendUrl = 'http://192.168.1.96:3000';
+  static String _backendUrl = 'http://20.102.109.114:3000';
 
   static String get backendUrl => _backendUrl;
 

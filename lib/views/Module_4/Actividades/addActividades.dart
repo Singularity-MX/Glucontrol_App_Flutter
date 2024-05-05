@@ -305,7 +305,7 @@ class _AgregarActividadScreenState extends State<AgregarActividadScreen> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
                     padding: EdgeInsets.all(16.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
@@ -364,7 +364,7 @@ class _AgregarActividadScreenState extends State<AgregarActividadScreen> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Color.fromARGB(255, 48, 48, 48),
+                    backgroundColor: Color.fromARGB(255, 48, 48, 48),
                     padding: EdgeInsets.all(16.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),

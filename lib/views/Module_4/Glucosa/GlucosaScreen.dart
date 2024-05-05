@@ -378,7 +378,7 @@ class _GlucosaScreenState extends State<GlucosaScreen> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Color.fromARGB(255, 48, 48, 48),
+                        backgroundColor: Color.fromARGB(255, 48, 48, 48),
                         padding: EdgeInsets.all(13.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -409,7 +409,7 @@ class _GlucosaScreenState extends State<GlucosaScreen> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Color.fromARGB(255, 48, 48, 48),
+                        backgroundColor: Color.fromARGB(255, 48, 48, 48),
                         padding: EdgeInsets.all(13.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),

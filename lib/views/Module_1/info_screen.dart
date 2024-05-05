@@ -97,7 +97,7 @@ class InfoScreen extends StatelessWidget {
                     },
                     child: Text('Ir al Menú de Información'),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blue, // Color de fondo del botón
+                      backgroundColor: Colors.blue, // Color de fondo del botón
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                             15.0), // Radio de esquinas de 15
@@ -120,7 +120,7 @@ class InfoScreen extends StatelessWidget {
                     },
                     child: Text('test'),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blue, // Color de fondo del botón
+                      backgroundColor: Colors.blue, // Color de fondo del botón
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                             15.0), // Radio de esquinas de 15

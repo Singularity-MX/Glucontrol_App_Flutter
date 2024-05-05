@@ -273,7 +273,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       child: Text('Iniciar sesión'),
                       style: ElevatedButton.styleFrom(
-                        primary: Color.fromRGBO(
+                        backgroundColor: Color.fromRGBO(
                             255, 52, 52, 1), // Color de fondo del botón
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
@@ -297,7 +297,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       child: Text('Regresar'),
                       style: ElevatedButton.styleFrom(
-                        primary: Color.fromRGBO(
+                        backgroundColor: Color.fromRGBO(
                             43, 43, 43, 1), // Color de fondo del botón
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(

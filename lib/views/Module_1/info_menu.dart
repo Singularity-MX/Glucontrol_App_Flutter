@@ -76,7 +76,7 @@ class InfoMenu extends StatelessWidget {
                       },
                       child: Text('Iniciar sesión'),
                       style: ElevatedButton.styleFrom(
-                        primary: Color.fromRGBO(
+                        backgroundColor: Color.fromRGBO(
                             30, 152, 222, 1), // Color de fondo del botón
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
@@ -101,7 +101,7 @@ class InfoMenu extends StatelessWidget {
                       },
                       child: Text('Crear una cuenta'),
                       style: ElevatedButton.styleFrom(
-                        primary: Color.fromRGBO(
+                        backgroundColor: Color.fromRGBO(
                             54, 59, 62, 1), // Color de fondo del botón
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
