@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'glucontrol-app',
+      title: 'glucosync',
       initialRoute: '/info', // Ruta inicial
       routes: {
         '/info': (context) => SplashScreen(), // Ruta para la pantalla de información

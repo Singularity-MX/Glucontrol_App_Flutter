@@ -348,7 +348,7 @@ class _ActividadesScreenState extends State<ActividadesScreen> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 48, 48, 48),
+                        backgroundColor: Color.fromARGB(255, 255, 255, 255),
                         padding: EdgeInsets.all(13.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -358,7 +358,8 @@ class _ActividadesScreenState extends State<ActividadesScreen> {
                         // Aquí especifica el icono que deseas mostrar
                         Icons
                             .home, // Puedes cambiar esto al icono que prefieras
-                        size: 25, // Tamaño del icono
+                        size: 25, 
+                        color: Color.fromARGB(255, 97, 199, 190),// Tamaño del icono
                       ),
                       label: Text(
                         '',
@@ -379,7 +380,7 @@ class _ActividadesScreenState extends State<ActividadesScreen> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 48, 48, 48),
+                        backgroundColor:Color.fromARGB(255, 97, 199, 190),
                         padding: EdgeInsets.all(13.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),

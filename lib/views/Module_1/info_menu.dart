@@ -50,7 +50,7 @@ class InfoMenu extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'GLUCONTROL',
+                      'GlucoSync',
                       style: TextStyle(
                         fontSize: 18,
                         color:
@@ -74,10 +74,12 @@ class InfoMenu extends StatelessWidget {
                           MaterialPageRoute(builder: (context) => LoginApp()),
                         );
                       },
-                      child: Text('Iniciar sesión'),
+                      child: Text('Iniciar sesión', 
+                         style: TextStyle(
+      color: Colors.white, // Color del texto blanco
+    ),),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(
-                            30, 152, 222, 1), // Color de fondo del botón
+                        backgroundColor: Color.fromARGB(255, 97, 199, 190),// Color de fondo del botón
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
                               15.0), // Radio de esquinas de 15
@@ -99,7 +101,10 @@ class InfoMenu extends StatelessWidget {
                               builder: (context) => RegistroScreen()),
                         );
                       },
-                      child: Text('Crear una cuenta'),
+                      child: Text('Crear una cuenta',
+                         style: TextStyle(
+      color: Color.fromARGB(255, 97, 199, 190), // Color del texto blanco
+    ),),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromRGBO(
                             54, 59, 62, 1), // Color de fondo del botón

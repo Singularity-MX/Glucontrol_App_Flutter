@@ -462,7 +462,7 @@ class _RegistroGlucosaScreenState extends State<RegistroGlucosaScreen> {
                     children: [
                       Icon(
                         Icons.arrow_back_ios,
-                        color: const Color.fromARGB(255, 24, 24, 24),
+                        color: const Color.fromARGB(255, 97, 199, 190),
                       ),
                       Text(
                         ' Regresar',
@@ -523,7 +523,7 @@ class _RegistroGlucosaScreenState extends State<RegistroGlucosaScreen> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 48, 48, 48),
+                    backgroundColor: Color.fromARGB(255, 97, 199, 190),
                     padding: EdgeInsets.all(16.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),

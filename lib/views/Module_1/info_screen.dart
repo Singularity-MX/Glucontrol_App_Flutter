@@ -33,7 +33,7 @@ class InfoScreen extends StatelessWidget {
                       0.65, // Ancho del 65% de la pantalla
                   alignment: Alignment.center, // Centrar el texto
                   child: Text(
-                    'Glucontrol es una app que te ayudará a tener un mejor control de tu glucosa. ',
+                    'GlucoSync es una app que te ayudará a tener un mejor control de tu glucosa. ',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.white,
@@ -95,9 +95,15 @@ class InfoScreen extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => InfoMenu()),
                       );
                     },
-                    child: Text('Ir al Menú de Información'),
+                    child: Text('Vamos',
+                       style: TextStyle(
+      color: Colors.white, // Color del texto blanco
+    ),
+    ), //poner el texto en color blannco
+
+                    
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue, // Color de fondo del botón
+                      backgroundColor: Color.fromARGB(255, 97, 199, 190), // Color de fondo del botón
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                             15.0), // Radio de esquinas de 15
@@ -118,9 +124,12 @@ class InfoScreen extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => ConfigScreen()),
                       );
                     },
-                    child: Text('test'),
+                    child: Text('Configuración', 
+                       style: TextStyle(
+      color: Color.fromARGB(255, 97, 199, 190), // Color del texto blanco
+    ),),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue, // Color de fondo del botón
+                      backgroundColor: const Color.fromARGB(255, 255, 255, 255), // Color de fondo del botón
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                             15.0), // Radio de esquinas de 15

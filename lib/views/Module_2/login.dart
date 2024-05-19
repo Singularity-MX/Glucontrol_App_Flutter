@@ -271,10 +271,12 @@ class _LoginPageState extends State<LoginPage> {
                         //hacer el login
                         await Login(formData);
                       },
-                      child: Text('Iniciar sesión'),
+                      child: Text('Iniciar sesión',
+                         style: TextStyle(
+      color: Colors.white, // Color del texto blanco
+    ),),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(
-                            255, 52, 52, 1), // Color de fondo del botón
+                        backgroundColor:Color.fromARGB(255, 97, 199, 190), // Color de fondo del botón
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
                               10.0), // Radio de esquinas de 15
@@ -295,10 +297,12 @@ class _LoginPageState extends State<LoginPage> {
                         //hacer el login
                         await Login(formData);
                       },
-                      child: Text('Regresar'),
+                      child: Text('Regresar',
+                         style: TextStyle(
+      color: Color.fromARGB(255, 97, 199, 190), // Color del texto blanco
+    ),),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(
-                            43, 43, 43, 1), // Color de fondo del botón
+                        backgroundColor: Color.fromRGBO(253, 253, 253, 1), // Color de fondo del botón
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
                               10.0), // Radio de esquinas de 15
